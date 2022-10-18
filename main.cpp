@@ -3,6 +3,7 @@
 #include <filesystem>
 #include <fstream>
 #include <vector>
+#include <unordered_set>
 
 #include "MinHashing.hpp"
 
@@ -10,7 +11,7 @@ using namespace std;
 
 struct KShingleStructure{
 	string filename;
-	vector<string> listOfKShingles;
+	unordered_set<string> listOfKShingles;
 };
 
 struct FileStructure{
@@ -20,13 +21,13 @@ struct FileStructure{
 
 
 //Funcion que dado un texto entrega vector con k-shingles
-vector<string> getKshingles(const string& text){
-	vector<string> listOfKShingles;
-	const unsigned k = 10;
+unordered_set<string> getKshingles(const string& text){
+	unordered_set<string> listOfKShingles;
+	const unsigned k = 10; //Modificar a 5
 
 	for(unsigned i = 0 ; i<text.length() - k + 1; i++){
 		string shingle = text.substr(i,k);
-		listOfKShingles.push_back(shingle);
+		listOfKShingles.insert(shingle);
 	}
 	return listOfKShingles;
 }
