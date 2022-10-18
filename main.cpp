@@ -6,18 +6,9 @@
 #include <unordered_set>
 
 #include "MinHashing.hpp"
+#include "Commons.hpp"
 
 using namespace std;
-
-struct KShingleStructure{
-	string filename;
-	unordered_set<string> listOfKShingles;
-};
-
-struct FileStructure{
-	string filename;
-	string text;
-};
 
 
 //Funcion que dado un texto entrega vector con k-shingles
@@ -130,7 +121,8 @@ int main(){
 	//Generar un vector con los nombres de cada fichero y sus respectivos k-shingles
 	vector<KShingleStructure> listOfKShingles = getKShinglesFromDocuments(listOfParsedDocuments);
 	
-	MinHashing MinHashing;
+
+
 
 	return 0;
 }
