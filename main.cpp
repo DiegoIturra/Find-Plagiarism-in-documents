@@ -4,6 +4,8 @@
 #include <fstream>
 #include <vector>
 
+#include "MinHashing.hpp"
+
 using namespace std;
 
 struct KShingleStructure{
@@ -127,6 +129,7 @@ int main(){
 	//Generar un vector con los nombres de cada fichero y sus respectivos k-shingles
 	vector<KShingleStructure> listOfKShingles = getKShinglesFromDocuments(listOfParsedDocuments);
 	
+	MinHashing MinHashing;
 
 	return 0;
 }

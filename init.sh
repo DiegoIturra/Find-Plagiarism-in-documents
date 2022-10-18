@@ -1,3 +1,3 @@
-g++ main.cpp -std=c++17 -o executable
+g++ *.cpp -std=c++17 -o executable
 ./executable
 
