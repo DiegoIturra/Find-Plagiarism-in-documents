@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <filesystem>
 #include <fstream>
@@ -47,7 +48,7 @@ vector<KShingleStructure> getKShinglesFromDocuments(const vector<FileStructure>&
 }
 
 
-//Retorna el texto parseado (READY)
+//Retorna el texto parseado
 string parseText(const string& path){
 	ifstream file;
 	string text;
@@ -57,9 +58,11 @@ string parseText(const string& path){
 	if(file.is_open()){
 		while(file.good()){
 			file >> text;
-			completeText += text;
+			completeText += text; 
 		}
 	}
+
+	transform(completeText.begin(), completeText.end(), completeText.begin(), ::tolower);
 
 	return completeText;
 }
