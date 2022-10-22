@@ -14,7 +14,7 @@ using namespace std;
 //Funcion que dado un texto entrega vector con k-shingles
 unordered_set<string> getKshingles(const string& text){
 	unordered_set<string> listOfKShingles;
-	const unsigned k = 10; //Modificar a 5
+	const unsigned k = 5;
 
 	for(unsigned i = 0 ; i<text.length() - k + 1; i++){
 		string shingle = text.substr(i,k);
