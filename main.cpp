@@ -122,6 +122,7 @@ int main(){
 	vector<KShingleStructure> listOfKShingles = getKShinglesFromDocuments(listOfParsedDocuments);
 	
 	MinHashing minHashing(listOfKShingles);
+	minHashing.applyMinHash();
 
 
 	return 0;
