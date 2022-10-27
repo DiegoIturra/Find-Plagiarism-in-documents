@@ -199,6 +199,6 @@ void MinHashing::applyMinHash(){
 		}
 	}
 
-	showCharacteristicMatrix();
+	//showCharacteristicMatrix();
 	//showSignatureMatrix();
 }

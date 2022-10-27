@@ -13,6 +13,8 @@ class MinHashing{
 	private:
 		const unsigned numberOfHashFunctions = 6;
 
+		friend class LocalSensitiveHashing;
+
 		//map que guarda el nombre del documento junto a un id unico
 		map<string,unsigned> idTable; 
 		map<unsigned,string> idTableReverse;

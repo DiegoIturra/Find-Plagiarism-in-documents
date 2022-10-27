@@ -126,6 +126,7 @@ int main(){
 	minHashing.applyMinHash();
 
 	LocalSensitiveHashing Lsh;
+	Lsh.applyLSH(minHashing);
 
 	return 0;
 }
