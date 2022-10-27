@@ -11,10 +11,11 @@ using namespace std;
 
 class MinHashing{
 	private:
-		const unsigned numberOfHashFunctions = 100;
+		const unsigned numberOfHashFunctions = 6;
 
 		//map que guarda el nombre del documento junto a un id unico
 		map<string,unsigned> idTable; 
+		map<unsigned,string> idTableReverse;
 
 		vector<vector<unsigned> > characteristicMatrix;
 
@@ -22,6 +23,7 @@ class MinHashing{
 
 		//Set que contiene todos los K-Shingles
 		unordered_map<string,unsigned> mapOfAllKShingles;
+		unordered_map<unsigned,string> mapOfAllKShinglesReverse;
 
 		//Funciona que retorna un valor hash dado el idShingle, y una estructura
 		//La cual contiene la tupla (a,b,p)
@@ -53,7 +55,7 @@ class MinHashing{
 		void mapFilenamesToIds(const vector<KShingleStructure>& listOfKShinglesStructures);
 
 	public:
-		MinHashing(const vector<KShingleStructure>& listOfKShinglesStructures);
+		MinHashing(vector<KShingleStructure>& listOfKShinglesStructures);
 
 		void applyMinHash();
 };

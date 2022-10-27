@@ -15,6 +15,7 @@ using namespace std;
 void MinHashing::showCharacteristicMatrix(){
 	cout << "Characteristic Matrix" << endl;
 	for(int i=0 ; i<characteristicMatrix.size() ; i++){
+		cout << this->mapOfAllKShinglesReverse[i] << " ";
 		for(int j=0 ; j<characteristicMatrix[i].size() ; j++){
 			cout << characteristicMatrix[i][j] << " ";
 		}
@@ -83,6 +84,7 @@ void MinHashing::mapFilenamesToIds(const vector<KShingleStructure>& listOfKShing
 	unsigned uniqueId = 0;
 	for(string filename : listOfFilenames){
 		this->idTable[filename] = uniqueId;
+		this->idTableReverse[uniqueId] = filename;
 		uniqueId++; 
 	}
 }
@@ -96,6 +98,7 @@ void MinHashing::createMapOfShingles(const vector<KShingleStructure>& listOfKShi
 			//TODO: reemplazar funcion existShingle por funcion template
 			if(!existShingle(kshingle)){
 				this->mapOfAllKShingles[kshingle] = uniqueId;
+				this->mapOfAllKShinglesReverse[uniqueId] = kshingle;
 				uniqueId++;
 			}
 		}
@@ -104,24 +107,26 @@ void MinHashing::createMapOfShingles(const vector<KShingleStructure>& listOfKShi
 
 
 //crear las estructuras basicas necesarias para poder usar algoritmo de MinHashing
-MinHashing::MinHashing(const vector<KShingleStructure>& listOfKShinglesStructures){
+MinHashing::MinHashing(vector<KShingleStructure>& listOfKShinglesStructures){
 	createMapOfShingles(listOfKShinglesStructures);
 	mapFilenamesToIds(listOfKShinglesStructures);
 	createCharacteristicMatrix(listOfKShinglesStructures);
+	listOfKShinglesStructures.clear(); //No es necesario mantener en memoria
+	srand(time(NULL));
 
 	//Impresion de prueba (documento,id)
-	for(auto& [filename,uniqueId] : this->idTable){
+	/*for(auto& [filename,uniqueId] : this->idTable){
 		cout << filename << " -> " << uniqueId << endl;
 	}
 	cout << endl;
-	
+	*/
 
 	//(shingle,numero_fila)
 	for(auto& [kshingle,id] : this->mapOfAllKShingles){
 		cout << kshingle << " -> " << id << endl;
 	}
 
-	srand(time(NULL));
+	
 }
 
 
@@ -144,21 +149,17 @@ vector<HashValues> MinHashing::createHashValues(){
 		vectorOfHashValues.push_back(hashValue);
 	}
 
-
-	//impresion de prueba
-	/*cout << "Valores Hash obtenidos " << endl;
-	for(HashValues hashValue : vectorOfHashValues){
-		cout << "a: " << hashValue.a << " b: " << hashValue.b << " p: " << hashValue.p << endl; 
-	}*/
-
-
 	return vectorOfHashValues;
 }
+
+
 
 //Retorna un hash para el id del shingle dado
 unsigned MinHashing::hashFunction(unsigned idShingle , HashValues& hashValues){
 	return (hashValues.a * idShingle + hashValues.b) % hashValues.p;
 }
+
+
 
 vector<int> MinHashing::getColumnValues(unsigned column){
 	vector<int> columnValues;
@@ -170,15 +171,9 @@ vector<int> MinHashing::getColumnValues(unsigned column){
 
 
 void MinHashing::applyMinHash(){
-
-	cout << "Total shingles: " << this->mapOfAllKShingles.size() << endl;
 	
 	//Vector que contiene k valores de los parametros de funcion hash (a,b,p)
 	vector<HashValues> vectorOfHashValues = createHashValues();
-
-	//Vector de prueba
-	//fin vector de prueba
-
 
 	int module = vectorOfHashValues[0].p;
 	unsigned numColumns = characteristicMatrix[0].size(); //Asumimos que tenemos algun valor

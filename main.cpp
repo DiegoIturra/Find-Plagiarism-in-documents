@@ -6,6 +6,7 @@
 #include <unordered_set>
 
 #include "MinHashing.hpp"
+#include "LocalSensitiveHashing.hpp"
 #include "Commons.hpp"
 
 using namespace std;
@@ -124,6 +125,7 @@ int main(){
 	MinHashing minHashing(listOfKShingles);
 	minHashing.applyMinHash();
 
+	LocalSensitiveHashing Lsh;
 
 	return 0;
 }
