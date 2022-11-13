@@ -5,7 +5,7 @@
 #include <vector>
 #include <unordered_set>
 
-#include "MinHashing.hpp"
+#include "Signature.hpp"
 #include "LocalSensitiveHashing.hpp"
 #include "Commons.hpp"
 
@@ -122,10 +122,10 @@ int main(){
 	//Generar un vector con los nombres de cada fichero y sus respectivos k-shingles
 	vector<KShingleStructure> listOfKShingles = getKShinglesFromDocuments(listOfParsedDocuments);
 	
-	MinHashing minHashing(listOfKShingles);
+	Signature signature(listOfKShingles);
 	
 	
-	minHashing.applyMinHash();
+	signature.applyMinHash();
 	/*
 	LocalSensitiveHashing Lsh;
 	Lsh.applyLSH(minHashing);

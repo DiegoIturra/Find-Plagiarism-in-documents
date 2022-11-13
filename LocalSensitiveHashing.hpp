@@ -1,14 +1,14 @@
 #ifndef LSH
 #define LSH
 
-#include "MinHashing.hpp"
+#include "Signature.hpp"
 
 class LocalSensitiveHashing{
 	private:
 		//Code
 	public:
 		LocalSensitiveHashing();
-		void applyLSH(MinHashing& minHashing);
+		void applyLSH(Signature& signature);
 };
 
 #endif
