@@ -11,15 +11,15 @@ using namespace std;
 
 class MinHashing{
 	private:
-		const unsigned numberOfHashFunctions = 6;
+		const unsigned numberOfHashFunctions = 20; //TODO: dejar en 100 o mas
 
 		friend class LocalSensitiveHashing;
+
+		vector<KShingleStructure> listOfKShinglesStructures;
 
 		//map que guarda el nombre del documento junto a un id unico
 		map<string,unsigned> idTable; 
 		map<unsigned,string> idTableReverse;
-
-		vector<vector<unsigned> > characteristicMatrix;
 
 		vector<vector<unsigned> > signatureMatrix;
 
@@ -43,9 +43,6 @@ class MinHashing{
 
 		//Verificar si existe un elemento en el set universal de shingles
 		bool existShingle(const string& shingle);
-
-		//Crear matriz caracteristica con los shingles como filas y documentos como columnas
-		void createCharacteristicMatrix(const vector<KShingleStructure>& listOfKShinglesStructures);
 
 		//Creat matriz de signatures
 		void createSignatureMatrix();

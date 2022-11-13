@@ -5,9 +5,9 @@
 using namespace std;
 
 LocalSensitiveHashing::LocalSensitiveHashing(){
-	cout << "Se instancia LSH Correctamente" << endl;
+	//cout << "Se instancia LSH Correctamente" << endl;
 }
 
 void LocalSensitiveHashing::applyLSH(MinHashing& minHashing){
-	minHashing.showSignatureMatrix();
+	//minHashing.showSignatureMatrix();
 }

@@ -123,10 +123,13 @@ int main(){
 	vector<KShingleStructure> listOfKShingles = getKShinglesFromDocuments(listOfParsedDocuments);
 	
 	MinHashing minHashing(listOfKShingles);
+	
+	
 	minHashing.applyMinHash();
-
+	/*
 	LocalSensitiveHashing Lsh;
 	Lsh.applyLSH(minHashing);
+	*/
 
 	return 0;
 }
